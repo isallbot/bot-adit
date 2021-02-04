@@ -11,7 +11,7 @@ const donasi = (Ig, name) => {
 ┣⊱ 082287685882
 ┃
 ┣━━━━━━━━━━━━━━━━━━━━
-┃  *${name}*
+┃  *BOT BY ${name}*
 ┗━━━━━━━━━━━━━━━━━━━━
 Note:
 Jika Gamau Donasi Setidaknya Follow IG Ngab:D
