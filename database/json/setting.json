@@ -1,8 +1,8 @@
 {
     "prefix": "!",
     "instagram": "https://www.instagram.com/adtya_rahmn",
-    "yt": "-",
+    "yt": "https://youtu.be/HledwuZsh2M",
     "name": "BOT-ADIT",
-    "memberLimit": 20,
-    "groupLimit": 2
+    "memberLimit": 10,
+    "groupLimit": 3
   }
