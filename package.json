@@ -1,5 +1,5 @@
 {
-  "name": "BOTISALL",
+  "name": "termux-bot-wa",
   "version": "0.0.2",
   "description": "No comment",
   "main": "index.js",
@@ -17,7 +17,7 @@
     "whatsapp",
     "bot"
   ],
-  "author": "IsallBot",
+  "author": "FarhanXCo",
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/baileys": "^3.3.0",

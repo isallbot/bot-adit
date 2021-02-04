@@ -1,6 +1,6 @@
 /*
 * Tambahin nama author lah
-* Author MhankBarBar, ISALL
+* Author MhankBarBar, Isall
 * Tambahin ya Cape Gan ngefix² Yg Ga work
 * Jan numpang nama doank
 
@@ -19,7 +19,8 @@ const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRando
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 const { color, bgcolor } = require('./lib/color')
-const { help } = require('./Fxc7/hecons')
+const { help } = require('./Fxc7/help')
+const { rules } = require('./Fxc7/rules')
 const { bahasa } = require('./Fxc7/bahasa')
 const { donasi } = require('./Fxc7/donasi')
 const { limitend, limitcount } = require('./Fxc7/limit')
@@ -31,7 +32,6 @@ const kagApi = require('@kagchi/kag-api')
 const fetch = require('node-fetch')
 const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
-const imgbb = require('imgbb-uploader')
 const google = require('google-it')
 const get = require('got')
 const emojiUnicode = require('emoji-unicode')
@@ -62,15 +62,15 @@ prefix, name, instagram, yt, groupLink, memberLimit
 
 const vcard = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
-            + 'FN:ADIT-BOT\n'
+            + 'FN:Adit\n'
             + 'ORG:Creator FAISAL WAPI;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=6282259218016:+62 822-5921-8016\n'
+            + 'TEL;type=CELL;type=VOICE;waid=6282259218016:+62 822 5921 8016\n'
             + 'END:VCARD'
 
 rdaftar = "TERIMA KASIH TELAH DAFTAR😁"
-limitt = 40
+limitt = 50
 ban = []
-userpremium = [] //ubah nomer kalian
+userpremium = ["628311800241@s.whatsapp.net"] //ubah nomer kalian
 
 function kyun(seconds){
   function pad(s){
@@ -155,7 +155,7 @@ const getRegisteredRandomId = () => {
 			const content = JSON.stringify(mek.message)
 			const from = mek.key.remoteJid
 			const type = Object.keys(mek.message)[0]
-			const AditGans = ["6282259218016@s.whatsapp.net"] // ubah aja gapapa
+			const FarhanGans = ["628311800241@s.whatsapp.net"] // ubah aja gapapa
 			const farhan = mek.message.conversation
 			const insom = from.endsWith('@g.us')
 			const nameReq = insom ? mek.participant : mek.key.remoteJid
@@ -463,14 +463,20 @@ const getRegisteredRandomId = () => {
 					client.updatePresence(from, Presence.composing)
 					if (isUser) return reply('kamu sudah terdaftar')
 					if (isBanned) return reply(mess.only.benned)
-					if (args.length < 1) return reply(`Parameter Salah\nCommand : ${prefix}daftar nama/umur\nContoh : ${prefix}daftar Adit/17/Banyuwangi`)
+					if (args.length < 1) return reply(`Parameter Salah\nCommand : ${prefix}daftar nama/umur\nContoh : ${prefix}daftar Farhan/17/Banyuwangi`)
 					reg = `${body.slice(8)}`
 					jeneng = reg.split("/")[0];
 					umure = reg.split("/")[1];
 					asal = reg.split("/")[2];
+					if (jeneng.length < 1) return reply('namanya siapa??')
+					if (umure.length < 1) return reply('umurnya??')
+					if (jeneng.length >= 20) return reply(`buset panjang amat namanya`)
+					if (umure.length >= 3, umure.length <= 1) return reply(`minimal umur 10 tahun keatas dan maximal 30 tahun`)
+					if (asal.length < 1) return reply('asal nya dari mars gan??')
+					if (asal.length >= 20) return reply('itu daerah mana gan🤔')
 						user.push(sender)
 						fs.writeFileSync('./database/json/user.json', JSON.stringify(user))
-						await costum(`\`\`\`Pendaftaran berhasil dengan SN: TM08GK8PPHBSJDH10J\`\`\`\n\n\`\`\`Pada ${date} ${time}\`\`\`\n\`\`\`[Nama]: ${jeneng}\`\`\`\n\`\`\`[Nomor]: wa.me/${sender.split("@")[0]}\`\`\`\n\`\`\`[Umur]: ${umure} Tahun\`\`\`\n\`\`\`[Asal]: ${asal}\`\`\`\n\`\`\`Untuk menggunakan bot\`\`\`\n\`\`\`silahkan\`\`\`\n\`\`\`kirim ${prefix}help/menu\`\`\`\n\`\`\`\nTotal Pengguna: ${user.length} Orang\`\`\``, text, AditGans, rdaftar)
+						await costum(`\`\`\`Pendaftaran berhasil dengan SN: TM08GK8PPHBSJDH10J\`\`\`\n\n\`\`\`Pada ${date} ${time}\`\`\`\n\`\`\`[Nama]: ${jeneng}\`\`\`\n\`\`\`[Nomor]: wa.me/${sender.split("@")[0]}\`\`\`\n\`\`\`[Umur]: ${umure} Tahun\`\`\`\n\`\`\`[Asal]: ${asal}\`\`\`\n\`\`\`Untuk menggunakan bot\`\`\`\n\`\`\`silahkan\`\`\`\n\`\`\`kirim ${prefix}help/menu\`\`\`\n\`\`\`\nTotal Pengguna: ${user.length} Orang\`\`\``, text, FarhanGans, rdaftar)
 					break 
 			case 'help':
 			case 'menu':
@@ -504,7 +510,7 @@ const getRegisteredRandomId = () => {
 					me = client.user
 					user.push(sender)
 					uptime = process.uptime()
-					teks = `⟩➢ *Nama Bot* : ${me.name}\n⟩➢ *Nomer Bot* : @${me.jid.split('@')[0]}\n⟩➢ *prefix* : | ${prefix} |\n⟩➢ *Total Block* : ${blocked.length}\n⟩➢ *Aktif Sejak* : ${kyun(uptime)}\n\n⟩➢ Total Pengguna: *${user.length}* User\n⟩➢ *Instagram* : https://www.instagram.com/adtya_rahmn\n⟩➢ *Special Thanks To* :\n⟩➢ _ISALL GANS_ \n⟩➢ _MAHLI GANS_ :\n⟩➢ _ADIT GANS_ `
+					teks = `⟩➢ *Nama Bot* : ${me.name}\n⟩➢ *Nomer Bot* : @${me.jid.split('@')[0]}\n⟩➢ *prefix* : | ${prefix} |\n⟩➢ *Total Block* : ${blocked.length}\n⟩➢ *Aktif Sejak* : ${kyun(uptime)}\n\n⟩➢ Total Pengguna: *${user.length}* User\n⟩➢ *Instagram* : https://www.instagram.com/_farhan_xcode7\n⟩➢ *Special Thanks To* :\n⟩➢ Allah SWT \n⟩➢ MahankBarBar`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -525,7 +531,7 @@ const getRegisteredRandomId = () => {
 					client.sendMessage(from, ben.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": ban}})
 					break 
 				case 'premiumlist':
-				prem = '```List Banned``` :\n'
+				prem = '```List User Premium ${name}``` :\n'
 					for (let userprem of userpremium) {
 						prem += `~> @${userprem.split('@')[0]}\n`
 					}
@@ -638,7 +644,7 @@ const getRegisteredRandomId = () => {
 			if (isBanned) return reply(mess.only.benned)
 			if (isLimit(sender)) return reply(limitend(pushname2))
 					reply(mess.wait)
-             var imgbb = require('imgbb-uploader')
+             const imgbb = require('imgbb-uploader')
             var encmedia  = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
             var media = await  client.downloadAndSaveMediaMessage(encmedia)
             
@@ -658,7 +664,7 @@ const getRegisteredRandomId = () => {
                         if (!isUser) return reply(mess.only.userB)
                         if (isBanned) return reply (mess.only.benned)
                         if (isLimit(sender)) return reply(limitend(pushname2))
-                        var imgbb = require('imgbb-uploader')
+                        imgbb = require('imgbb-uploader')
                          if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                          ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
                          reply(mess.wait)
@@ -685,7 +691,7 @@ const getRegisteredRandomId = () => {
                                         if (!isUser) return reply(mess.only.userB)
                                         if (isBanned) return reply(mess.only.benned)
                                         if (isLimit(sender)) return reply(limitend(pushname2))
-                                        var imgbb = require('imgbb-uploader')
+                                        imgbb = require('imgbb-uploader')
                                          if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                                          ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
                                          reply(mess.wait)
@@ -2068,11 +2074,11 @@ const getRegisteredRandomId = () => {
 				if (!isUser) return reply(mess.only.userB)
 				if (isLimit(sender)) return reply(limitend(pushname2))
               	    if (args.length < 1) return reply('teksnya mana gan?')
-                    hm = `${body.slice(8)}`
+                    hm = `${body.slice(9)}`
                     text1 = hm.split("/")[0];
                     text2 = hm.split("/")[1];                    
-                    glitch = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${text1}&text2=${text2}&apikey=${VthearApi}`, {method: 'get'})
-                    client.sendMessage(from, glitch, image, {quoted: mek, caption: 'nih gan'})
+                    buff = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${text1}&text2=${text2}&apikey=${VthearApi}`, {method: 'get'})
+                    client.sendMessage(from, buff, image, {quoted: mek, caption: 'nih gan'})
 			     	await limitAdd(sender) 
 			     	break 
                 case 'cphlogo':
@@ -2294,7 +2300,7 @@ const getRegisteredRandomId = () => {
 						teks += `╠➥ @${mem.jid.split('@')[0]} wa.me/${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`╔═══✪ Tag By *${pushname2}* ✪══`+ teks +'╚═══〘 ADIT-BOT 〙═══', members_id, true)
+					mentions(`╔═══✪ Tag By *${pushname2}* ✪══`+ teks +'╚═══〘 BOT-ADIT 〙═══', members_id, true)
 					break
 			    case 'mentionall':
 			    if (isBanned) return reply(mess.only.benned)    
@@ -2307,7 +2313,7 @@ const getRegisteredRandomId = () => {
 						teks += `╠➥ @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`╔══〘  *${body.slice(12)}*  〙✪══`+teks+'╚═〘 ADIT_BOT 〙', members_id, true)
+					mentions(`╔══〘  *${body.slice(12)}*  〙✪══`+teks+'╚═〘 BOT-ADIT 〙', members_id, true)
 					break
 			    case 'kbbi':
 			    if (isBanned) return reply(mess.only.benned)    
@@ -2359,7 +2365,7 @@ const getRegisteredRandomId = () => {
 					for (let _ of anu) {
 						client.deleteChat(_.jid)
 					}
-					reply(`\`\`\`Sukses delete all chat ADIT-BOT\`\`\``)
+					reply(`\`\`\`Sukses delete all chat BOT-ADIT\`\`\``)
 					break
                                 case 'bcgc':
 					client.updatePresence(from, Presence.composing) 
@@ -2392,7 +2398,7 @@ const getRegisteredRandomId = () => {
 						reply('Suksess broadcast')
 					} else {
 						for (let _ of anu) {
-							sendMess(_.jid, `[ *ADIT-BOT BROADCAST* ]\n\n${body.slice(4)}`)
+							sendMess(_.jid, `[ *BOT-ADIT BROADCAST* ]\n\n${body.slice(4)}`)
 						}
 						reply('Suksess broadcast')
 					}
@@ -2845,7 +2851,7 @@ const getRegisteredRandomId = () => {
                 anu = await fetchJson(`https://api-anoncybfakeplayer.herokuapp.com/sckdown?url=${args[0]}`, {method: 'get'})
                if (anu.error) return reply(anu.error)
                  sck = `「 *SNACK VIDEO DOWNLOADER* 」\n\n*• Format:* ${anu.format}\n*• Size:* ${anu.size}\n\n*TUNGGU SEBENTAR LAGI DIKIRIM MOHON JANGAN SPAM*`
-                bufferddd = await getBuffer('https://raw.githubusercontent.com/isallbot/bot-adit/main/src/glitchtext.png')
+                bufferddd = await getBuffer('https://raw.githubusercontent.com/FarhanXCode7/termux-bot-wa/main/src/glitchtext.png')
                  reply(mess.wait)
                 buff = await getBuffer(anu.result)
                 client.sendMessage(from, bufferddd, image, {quoted: mek, caption: sck})
@@ -3229,7 +3235,7 @@ const getRegisteredRandomId = () => {
 						console.log(muehe)
 						reply(muehe)
 					} else {
-						console.log(color('[ADIT-BOT]','red'), 'Command Tidak Terdaftar', color(sender.split('@')[0]))
+						console.log(color('[BOT-ADIT]','red'), 'Command Tidak Terdaftar', color(sender.split('@')[0]))
 					}
                            }
 		} catch (e) {
