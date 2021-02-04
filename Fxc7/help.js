@@ -5,8 +5,8 @@ const help = (prefix, instagram, yt, name, pushname2, user, limitt, uptime, jam,
 ${instagram}
 
 
-\`\`\`GROUP OFFICIAL\`\`\`
-https://chat.whatsapp.com/GHC5djoQJrcGBJFwYQuQoB
+
+
 
 
 \`\`\`HARAP BACA NOTE DIBAWAH SEBELUM\`\`\`
