@@ -5,10 +5,6 @@ const help = (prefix, instagram, yt, name, pushname2, user, limitt, uptime, jam,
 ${instagram}
 
 
-
-
-
-
 \`\`\`HARAP BACA NOTE DIBAWAH SEBELUM\`\`\`
 \`\`\`MENGGUNAKAN BOT\`\`\`
 
